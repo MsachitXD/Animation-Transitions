@@ -8,8 +8,42 @@
 import SwiftUI
 
 struct FlipTransitionView: View {
+    @State private var show = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            BackgroundView()
+            
+            VStack{
+                
+                Spacer()
+                
+                if show {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(.mint.gradient)
+                        .frame(width: 200, height: 200)
+                        .overlay(
+                            content: {
+                                Text("Flip")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundStyle(.white)
+                            }
+                        )
+                        .transition(.FlipFromTop)
+                }
+                
+                Spacer()
+                
+                Button(show ? "Hide" : "Show") {
+                    withAnimation{
+                        show.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .navigationTitle("Flip From Top")
     }
 }
 

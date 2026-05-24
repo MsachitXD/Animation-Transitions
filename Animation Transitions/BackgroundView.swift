@@ -9,7 +9,20 @@ import SwiftUI
 
 struct BackgroundView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        MeshGradient(
+            width: 2,
+            height: 2,
+            points: [
+                [0, 0], [1, 0],
+                [0, 1], [1, 1]
+            ],
+            colors: [
+                .pink, .indigo,
+                .yellow, .red
+            ]
+        )
+        .opacity(0.4)
+        .ignoresSafeArea()
     }
 }
 

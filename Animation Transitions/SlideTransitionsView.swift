@@ -8,8 +8,35 @@
 import SwiftUI
 
 struct SlideTransitionsView: View {
+    
+    @State private var show = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            BackgroundView()
+            
+            VStack{
+                
+                Spacer()
+                
+                if show {
+                    Circle()
+                        .fill(.indigo.gradient)
+                        .frame(width: 200, height: 200)
+                        .transition(.slide)
+                }
+                
+                Spacer()
+                
+                Button(show ? "Hide" : "Show") {
+                    withAnimation{
+                        show.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .navigationTitle("Slide Transitions")
     }
 }
 

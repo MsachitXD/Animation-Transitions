@@ -8,8 +8,44 @@
 import SwiftUI
 
 struct ScaleBlurTransitionView: View {
+    @State private var show = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            BackgroundView()
+            
+            VStack{
+                
+                Spacer()
+                
+                if show {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(.mint.gradient)
+                        .frame(width: 200, height: 200)
+                        .overlay(
+                            content: {
+                                Text("Scale & Blur")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                            }
+                        )
+                        .transition(.scaleAndBlur)
+                }
+                
+                Spacer()
+                
+                Button(show ? "Hide" : "Show") {
+                    withAnimation{
+                        show.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .navigationTitle("Scale and Blur")
     }
 }
 
